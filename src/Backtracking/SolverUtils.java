@@ -1,0 +1,58 @@
+package Backtracking;
+
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+
+/*
+* Solver utils class provides some helper methods like creating initial state.
+ */
+public class SolverUtils {
+	public static ImageIcon imgo = new ImageIcon("Imgs\\icon.png");
+    // Generate state that all queens have row # 0
+    public static int[] generateAllOneState(int n) {
+
+        return new int[n];
+    }
+
+    // Randomizes state
+    public static int[] randomizeState(int[] r) {
+    	
+    	ArrayList<Integer> list = new ArrayList<>(r.length);
+		for (int i = 0; i < r.length; i++){
+		    list.add(i);
+		}
+		
+		for (int count = 0; count < r.length; count++){
+		    r[count] = list.remove((int)(Math.random() * list.size()));
+		}
+       /*for (int i = 0; i < r.length; i++) 
+            r[i] = (int) (Math.random() * r.length);*/
+    	 
+        
+        return r;
+    }
+
+    // generates random initial state
+    public static int[] generateRandomState(int n) {
+
+        return randomizeState(generateAllOneState(n));
+    }
+
+    // Returns heuristic cost
+	public static int getHeuristicCost(int[] r) {
+        int h = 0;
+
+        // increment cost if two queens are in same row or in same diagonal.
+        for (int i = 0; i < r.length; i++)
+            for (int j = i + 1; j < r.length; j++) 
+                if (r[i] == r[j] || Math.abs(r[i] - r[j]) == j - i) 
+                    h += 1;
+        
+
+        return h;
+    }
+
+
+
+}

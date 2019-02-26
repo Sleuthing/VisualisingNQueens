@@ -1,5 +1,5 @@
 # VisualisingNQueens
-An NQueens project that offers visualised solutions through algorithms such as Backtracking, Genetic and HillClimbing.
+NQueens project offering visualized solutions through algorithms such as Backtracking, Genetic and HillClimbing.
 
 Some screenshots:
 

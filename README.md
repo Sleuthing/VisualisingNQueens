@@ -2,8 +2,8 @@
 An NQueens project that offers visualised solutions through algorithms such as Backtracking, Genetic and HillClimbing.
 Some screenshots:
 
-![Bactracking UI](Backtracking.png)
+![Bactracking UI](Samples/Backtracking.png)
 
-![Genetic UI](GeneticAfter.png)
+![Genetic UI](Samples/BGeneticAfter.png)
 
-![Genetic UI](GeneticPreAfter.png)
+![Genetic UI](Samples/BGeneticPreAfter.png)

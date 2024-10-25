@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-	public static JFrame jFrame;
+	public static JFrame main_gui;
 	public static int PoP = 20000;
 	public static int SP = 200;
 	public static int M = 20;
@@ -44,12 +44,12 @@ public class Main {
 	}
 
 	public Main() {
-		jFrame = new JFrame("GeneticAlg Solver");
-		jFrame.setResizable(true);
-		jFrame.setLayout(new BorderLayout());
-		jFrame.setLocation(550, 0);
-		jFrame.setIconImage(img.getImage());
-		jFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		main_gui = new JFrame("GeneticAlg Solver");
+		main_gui.setResizable(true);
+		main_gui.setLayout(new BorderLayout());
+		main_gui.setLocation(550, 0);
+		main_gui.setIconImage(img.getImage());
+		main_gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		jLabel = new JLabel[M][M];
 		P = new JPanel(new GridBagLayout());
 		Q = new JPanel(new GridLayout(M, M));
@@ -75,12 +75,12 @@ public class Main {
 			}
 		}
 
-		jFrame.setSize(800, 770);
-		jFrame.setDefaultCloseOperation(jFrame.DISPOSE_ON_CLOSE);
+		main_gui.setSize(800, 770);
+		main_gui.setDefaultCloseOperation(main_gui.DISPOSE_ON_CLOSE);
 		Q.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-		jFrame.add(Q, BorderLayout.CENTER);
-		jFrame.add(P, BorderLayout.SOUTH);
-		jFrame.setVisible(true);
+		main_gui.add(Q, BorderLayout.CENTER);
+		main_gui.add(P, BorderLayout.SOUTH);
+		main_gui.setVisible(true);
 
 	}
 
@@ -103,7 +103,7 @@ public class Main {
 
 		double startTime = System.nanoTime();
 		while (geneticAlgo.getFittestChromosome().getFitness() != 0) {
-			jFrame.setTitle("GeneticAlg Solver, generation: " + generation + " Fitness:"
+			main_gui.setTitle("GeneticAlg Solver, generation: " + generation + " Fitness:"
 					+ geneticAlgo.getFittestChromosome().getFitness());
 
 			geneticAlgo.naturalSelection();
@@ -135,7 +135,7 @@ public class Main {
 		if (geneticAlgo.getFittestChromosome().getFitness() == 0) {
 			String ss = String.format("Time elapsed: %.3f s", totalTime);
 			JOptionPane.showMessageDialog(null, "Done!" + "\n" + ss);
-			jFrame.setTitle("GeneticAlg Solver, generation: " + generation + " Fitness: "
+			main_gui.setTitle("GeneticAlg Solver, generation: " + generation + " Fitness: "
 					+ geneticAlgo.getFittestChromosome().getFitness());
 		}
 		GUI.QN.setEnabled(true);

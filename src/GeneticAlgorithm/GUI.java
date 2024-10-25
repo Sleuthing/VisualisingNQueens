@@ -1,183 +1,153 @@
 package GeneticAlgorithm;
 
+import java.util.Hashtable;
+
+//java.awt imports
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Hashtable;
 
+//javax.swing imports
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import Backtracking.Backtracking;
+//meta imports
 import Backtracking.Start;
-import Backtracking.Backtracking.action;
-import GeneticAlgorithm.Main;
+import Backtracking.Backtracking;
 import GeneticAlgorithm.Main.aktion;
 
 public class GUI {
-	static JButton load,exc;
-	static boolean T=false;
-	public static JFrame main_gui;
-	static JTextField QN = new JTextField();
-	static JTextField QZ = new JTextField();
-	static JTextField QX = new JTextField();
-	static JTextField QC = new JTextField();
-	JLabel dn = new JLabel("Population size:");
-	JLabel dz = new JLabel("Mutation rate:");
-	JLabel dx = new JLabel("Elite chromosome:");
-	JLabel dc = new JLabel("Tournament size:");
-	JLabel dv = new JLabel("Delay:");
-	JSlider points = new JSlider(0, 400,  Main.SP);
-	Hashtable<Integer, JLabel> labelTable  = new Hashtable<Integer, JLabel>();
-	public GUI() {
+    static JButton load, exc;
+    //static boolean T=false;
+    public static JFrame main_gui;
+    static JTextField pop_size_text_field = new JTextField();
+    static JTextField mutation_text_field = new JTextField();
+    static JTextField elite_chrom_text_field = new JTextField();
+    static JTextField tourn_size_text_field = new JTextField();
+    JLabel pop_size_label = new JLabel("Population size:");
+    JLabel mutation_label = new JLabel("Mutation rate:");
+    JLabel elite_chrom_label = new JLabel("Elite chromosome:");
+    JLabel tourn_size_label = new JLabel("Tournament size:");
+    JLabel delay_label = new JLabel("Delay:");
+    JSlider points = new JSlider(0, 400, Main.SP);
+    Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
 
-		aktion bc = new aktion();
-		labelTable.put(new Integer(0), new JLabel("Fast"));
-		labelTable.put(new Integer(200), new JLabel("Average"));
-		labelTable.put(new Integer(400), new JLabel("Slow"));
-		points.setLabelTable(labelTable);
-		points.setPaintLabels(true);
-		points.setMajorTickSpacing(5);
-		points.setMinorTickSpacing(1);
-		points.setPaintTicks(true);
-		points.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent event) {
-				Main.SP = points.getValue();
-			}
-		});
-		points.setPreferredSize(new Dimension(200,40));
-		QN.setText(String.valueOf(Main.M*1000));
-		QZ.setText(String.valueOf(GeneticAlgo.MUTATE_RATE));
-		QX.setText(String.valueOf(GeneticAlgo.ELITE_CHROMOSOME));
-		QC.setText(String.valueOf(GeneticAlgo.TOURNAMENT_SELECTION_SIZE));
-		QN.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					Main.PoP = Integer.parseInt(QN.getText());
-				}
-			}
-		});
-		QZ.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					GeneticAlgo.MUTATE_RATE = Double.parseDouble(QZ.getText());
-				}
-			}
-		});
-		QX.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					GeneticAlgo.ELITE_CHROMOSOME = Integer.parseInt(QX.getText());
-				}
-			}
-		});
-		QC.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					GeneticAlgo.TOURNAMENT_SELECTION_SIZE = Integer.parseInt(QC.getText());
-				}
-			}
-		});
-		main_gui = new JFrame("GeneticAlg Intializer, "+Main.M+"-Queens");
-		main_gui.setIconImage(Backtracking.img.getImage());
-		main_gui.setLayout(new GridBagLayout());
-		main_gui.setSize(500, 500);
-		main_gui.setLocation(450, 0);
-		load = new JButton(" Go! ");
-		exc = new JButton("Stop");
-		exc.setEnabled(false);
-		load.addActionListener(bc);
-		load.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent o) {
-				exc.setEnabled(true);
-				QN.setEnabled(false);
-				QZ.setEnabled(false);
-				QX.setEnabled(false);
-				QC.setEnabled(false);
-				
-			}
-		});
-		exc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent o) {
-				Main.m.stop();
-				QN.setEnabled(true);
-				QZ.setEnabled(true);
-				QX.setEnabled(true);
-				QC.setEnabled(true);
-			}
-		});
-		QN.setColumns(4);
-		QZ.setColumns(4);
-		QX.setColumns(4);
-		QC.setColumns(4);
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 2;
-		gbc.gridy = 4;	
-		main_gui.add(QZ, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = 4;	
-		main_gui.add(dz, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 2;
-		gbc.gridy = 2;	
-		main_gui.add(QN, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		main_gui.add(dn, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 2;
-		gbc.gridy = -4;
-		main_gui.add(QX, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = -4;
-		main_gui.add(dx, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 2;
-		gbc.gridy = -2;
-		main_gui.add(QC, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = -2;	
-		main_gui.add(dc, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 2;	
-		gbc.gridy =0;   	
-		main_gui.add(points, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = 0;	
-		main_gui.add(dv, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = 0;
-		gbc.gridy = 10;
-		main_gui.add(exc, gbc);
-		gbc.insets = new Insets(5, 0, 0, 5);
-		gbc.gridx = -2;
-		gbc.gridy = 10;
-		main_gui.add(load, gbc);
-		main_gui.setVisible(true);
-	}
+    public GUI() {
 
-	public static void main(String args[]) {
+        aktion bc = new aktion();
+        labelTable.put(0, new JLabel("Fast"));
+        labelTable.put(200, new JLabel("Average"));
+        labelTable.put(400, new JLabel("Slow"));
+        points.setLabelTable(labelTable);
+        points.setPaintLabels(true);
+        points.setMajorTickSpacing(5);
+        points.setMinorTickSpacing(1);
+        points.setPaintTicks(true);
+        points.addChangeListener((event) -> Main.SP = points.getValue());
+        points.setPreferredSize(new Dimension(200, 40));
+        pop_size_text_field.setText(String.valueOf(Main.M * 1000));
+        mutation_text_field.setText(String.valueOf(GeneticAlgo.MUTATE_RATE));
+        elite_chrom_text_field.setText(String.valueOf(GeneticAlgo.ELITE_CHROMOSOME));
+        tourn_size_text_field.setText(String.valueOf(GeneticAlgo.TOURNAMENT_SELECTION_SIZE));
+        pop_size_text_field.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    Main.PoP = Integer.parseInt(pop_size_text_field.getText());
+                }
+            }
+        });
+        mutation_text_field.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    GeneticAlgo.MUTATE_RATE = Double.parseDouble(mutation_text_field.getText());
+                }
+            }
+        });
+        elite_chrom_text_field.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    GeneticAlgo.ELITE_CHROMOSOME = Integer.parseInt(elite_chrom_text_field.getText());
+                }
+            }
+        });
+        tourn_size_text_field.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    GeneticAlgo.TOURNAMENT_SELECTION_SIZE = Integer.parseInt(tourn_size_text_field.getText());
+                }
+            }
+        });
+        main_gui = new JFrame("GeneticAlg Intializer, " + Main.M + "-Queens");
+        main_gui.setIconImage(Backtracking.img.getImage());
+        main_gui.setLayout(new GridBagLayout());
+        main_gui.setSize(500, 500);
+        main_gui.setLocation(450, 0);
+        load = new JButton(" Go! ");
+        exc = new JButton("Stop");
+        exc.setEnabled(false);
 
-		new GUI();
+        load.addActionListener(bc);
+        load.addActionListener((event) -> {
+            exc.setEnabled(true);
+            toggle_fields(false);
+        });
+        exc.addActionListener((event) -> {
+            // ToDo: stop thread in a more standard way
+            //thread.interrupt();
+            Main.thread.stop();
+            toggle_fields(true);
+        });
 
-	}
+        pop_size_text_field.setColumns(4);
+        mutation_text_field.setColumns(4);
+        elite_chrom_text_field.setColumns(4);
+        tourn_size_text_field.setColumns(4);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        Insets gbc_insets = new Insets(5, 0, 0, 5);
+
+        main_gui.add(mutation_text_field, Start.setGridBagConstraints(2, 4, gbc_insets, gbc));
+
+        main_gui.add(mutation_label, Start.setGridBagConstraints(0, 4, gbc_insets, gbc));
+
+        main_gui.add(pop_size_text_field, Start.setGridBagConstraints(2, 2, gbc_insets, gbc));
+
+        main_gui.add(pop_size_label, Start.setGridBagConstraints(0, 2, gbc_insets, gbc));
+
+        main_gui.add(elite_chrom_text_field, Start.setGridBagConstraints(2, -4, gbc_insets, gbc));
+
+        main_gui.add(elite_chrom_label, Start.setGridBagConstraints(0, -4, gbc_insets, gbc));
+
+        main_gui.add(tourn_size_text_field, Start.setGridBagConstraints(2, -2, gbc_insets, gbc));
+
+        main_gui.add(tourn_size_label, Start.setGridBagConstraints(0, -2, gbc_insets, gbc));
+
+        main_gui.add(points, Start.setGridBagConstraints(2, 0, gbc_insets, gbc));
+
+        main_gui.add(delay_label, Start.setGridBagConstraints(0, 0, gbc_insets, gbc));
+
+        main_gui.add(exc, Start.setGridBagConstraints(0, 10, gbc_insets, gbc));
+
+        main_gui.add(load, Start.setGridBagConstraints(-2, 10, gbc_insets, gbc));
+        main_gui.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+
+        new GUI();
+
+    }
+
+    public static void toggle_fields(boolean b) {
+        pop_size_text_field.setEnabled(b);
+        mutation_text_field.setEnabled(b);
+        elite_chrom_text_field.setEnabled(b);
+        tourn_size_text_field.setEnabled(b);
+    }
 }

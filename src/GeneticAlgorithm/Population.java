@@ -20,10 +20,7 @@ public class Population {
 
     public void sortPopulationBasedOnFitness () {
         Arrays.sort(this.chromosomes, (chromosome1, chromosome2) -> {
-            if(chromosome1.getFitness() == chromosome2.getFitness())
-            return 0;
-            else
-            	return chromosome2.getFitness() - chromosome1.getFitness();
+            return chromosome2.getFitness() - chromosome1.getFitness();
         });
     }
 

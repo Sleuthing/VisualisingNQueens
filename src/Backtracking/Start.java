@@ -68,7 +68,7 @@ public class Start {
                     if (Integer.parseInt(queen_number_text_field.getText()) <= 20 && Integer.parseInt(queen_number_text_field.getText()) >= 4) {
                         Backtracking.M = Integer.parseInt(queen_number_text_field.getText());
                         Main.M = (Integer.parseInt(queen_number_text_field.getText()));
-                        HillClimbing.M = Integer.parseInt(queen_number_text_field.getText());
+                        HillClimbing.num_queens = Integer.parseInt(queen_number_text_field.getText());
                         if (GUI.main_gui != null) {
                             GUI.main_gui.dispose();
                             try {

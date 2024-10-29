@@ -17,7 +17,7 @@ public class Backtracking {
 	public static int M= 20;
 	private static JLabel[][] jLabel = new JLabel[M][M];
 	JSlider points = new JSlider(0, 30,   se);
-	Hashtable<Integer, JLabel> labelTable  = new Hashtable<Integer, JLabel>(); 
+	Hashtable<Integer, JLabel> labelTable  = new Hashtable<Integer, JLabel>();
 	
 	public static ImageIcon img = SolverUtils.imgo;
 	
@@ -139,8 +139,8 @@ public class Backtracking {
 				return true;
 			
 				int[] MM=SolverUtils.generateRandomState(M);
-				/*for(int f=0;f<M;f++) {
-					System.out.println(MM[f]);
+				/*for(int f=0;f<num_queens;f++) {
+					System.out.println(delay_value[f]);
 				
 				}	System.out.println("End.");*/
 			int i = 0;
@@ -223,7 +223,7 @@ public class Backtracking {
 	Backtracking() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			UnsupportedLookAndFeelException {
 		int w = 800, h = 770;
-		// if (M>9) {h+=(M-2)*15;}
+		// if (num_queens>9) {h+=(num_queens-2)*15;}
 		labelTable.put(new Integer(0), new JLabel("Fast"));
 		labelTable.put(new Integer(15), new JLabel("Average"));
 		labelTable.put(new Integer(30), new JLabel("Slow"));
@@ -295,7 +295,7 @@ public class Backtracking {
 				Q.add(jLabel[i][j]);
 			}
 		}
-		// P.add(tb, BorderLayout.NORTH);
+		// buttons_panel.add(tb, BorderLayout.NORTH);
 		Q.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		jFrame.add(Q, BorderLayout.CENTER);
 		jFrame.add(tb, BorderLayout.NORTH);

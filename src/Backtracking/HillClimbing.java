@@ -149,18 +149,10 @@ public class HillClimbing {
 	}
 
 	public static void display_queens(int[] board_state) {
-		int y = 0;
-		for (int j = 0; j < num_queens; j++) {
-			for (int i = 0; i < num_queens; i++) {
-				if (board_state[y] == i) {
-					jLabel[i][j].setBackground(Color.ORANGE);
-					jLabel[i][j].setIcon(img);
-					y++;
-					break;
-				}
-			}
+		for (int i = 0; i < num_queens; i++) {
+			jLabel[board_state[i]][i].setBackground(Color.ORANGE);
+			jLabel[board_state[i]][i].setIcon(img);
 		}
-
 	}
 
 	public static void firstChoiceHillClimbing(int maxNumOfIterations) {

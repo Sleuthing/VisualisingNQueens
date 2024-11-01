@@ -71,16 +71,9 @@ public class Main {
     }
 
     public static void loop_over_cells(GeneticAlgo geneticAlgo) {
-        int y = 0;
-        for (int j = 0; j < M; j++) {
-            for (int i = 0; i < M; i++) {
-                if (geneticAlgo.getFittestChromosome().genes[y] == i) {
-                    jLabel[i][j].setBackground(Color.ORANGE);
-                    jLabel[i][j].setIcon(img);
-                    y++;
-                    break;
-                }
-            }
+        for (int i = 0; i < M; i++) {
+            jLabel[geneticAlgo.getFittestChromosome().genes[i]][i].setBackground(Color.ORANGE);
+            jLabel[geneticAlgo.getFittestChromosome().genes[i]][i].setIcon(img);
         }
     }
 

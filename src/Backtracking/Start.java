@@ -66,7 +66,7 @@ public class Start {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (Integer.parseInt(queen_number_text_field.getText()) <= 20 && Integer.parseInt(queen_number_text_field.getText()) >= 4) {
-                        Backtracking.M = Integer.parseInt(queen_number_text_field.getText());
+                        Backtracking.num_queens = Integer.parseInt(queen_number_text_field.getText());
                         Main.M = (Integer.parseInt(queen_number_text_field.getText()));
                         HillClimbing.num_queens = Integer.parseInt(queen_number_text_field.getText());
                         if (GUI.main_gui != null) {
@@ -83,7 +83,7 @@ public class Start {
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Sorry, number of allowed queens is between 4-20!");
-                        queen_number_text_field.setText(String.valueOf(Backtracking.M));
+                        queen_number_text_field.setText(String.valueOf(Backtracking.num_queens));
                     }
 
                 }
@@ -113,7 +113,7 @@ public class Start {
         hillclimb_button.setFormat(new int[]{57, 107, 189}, "Serif", 120);
 
         queen_number_text_field.setColumns(5);
-        queen_number_text_field.setText(String.valueOf(Backtracking.M));
+        queen_number_text_field.setText(String.valueOf(Backtracking.num_queens));
         queen_number_text_field.setPreferredSize(new Dimension(80, 30));
 
         start_button.addActionListener(ac);
